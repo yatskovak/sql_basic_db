@@ -1,0 +1,51 @@
+version: '3.9'
+#name: basic_db
+name: postgres
+
+
+services:
+  postgres_db:
+    image: postgres
+
+    environment:
+      POSTGRES_DB: test_db
+      POSTGRES_PASSWORD: "qwerty"
+
+    volumes:
+      - ./dumps:/dumps
+      - postgres_data:/var/lib/postgresql/data
+
+    ports:
+      - "5444:5432"
+
+  #mysql_db:
+  #  image: mysql
+
+  #  environment:
+  #    MYSQL_DATABASE: test_db
+  #    MYSQL_ROOT_PASSWORD: "qwerty"
+
+  #  volumes:
+  #    - ./dumps:/dumps
+  #    - mysql_data:/var/lib/mysql
+  #
+  #  ports:
+  #    - "3306:3306"
+
+
+volumes:
+  #mysql_data:
+  postgres_data:
+
+
+# docker compose -f ./docker-compose_postgres.yml  up -d
+
+# docker compose ls
+#NAME                STATUS              CONFIG FILES
+#basic_db_postgres   running(1)          /mnt/data500/AVI_IT_SQL_2022/basic_db___BackendArtist__Минимальный_уровень_по_базам_данных/docker-compose_postgres.yml
+
+# docker compose --project-name postgres down -v   # delete
+
+# docker compose --project-name postgres stop       # stop
+# docker compose --project-name postgres start		#start	
+
